@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<h2>{{ page.title }}</h2>
+<p>{{ page.date | date_to_string }} - {{ page.author }}</p>
+
+{{ content }}
+
+{% if page.tags %}
+<p>
+<small>Tagged: {% for tag in page.tags %}<a href="/tags#{{ tag }}">{{ tag }}</a> {% endfor %}</small>
+</p>
+{% endif %}

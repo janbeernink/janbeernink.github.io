@@ -1,1 +1,8 @@
 theme: jekyll-theme-slate
+permalink: /:categories/:year/:month/:day/:title
+title: Jan Beernink
+google_analytics: false
+defaults:
+  -
+    values:
+      author: Jan Beernink

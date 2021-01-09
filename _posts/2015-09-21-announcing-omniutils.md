@@ -1,6 +1,8 @@
 ---
 title: Announcing OmniUtils
 layout: post
+tags: omniutils java8 jdk8
+categories: omniutils jdk8
 ---
 
 If you're familiar with the OmniFaces library, you may know that it contains a number of useful utility methods. Some of these methods would also be

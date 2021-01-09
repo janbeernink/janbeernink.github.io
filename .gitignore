@@ -1,2 +1,6 @@
 *.iml
 .idea/
+_site/
+.jekyll-cache/
+*.lock
+.sass-cache/
