@@ -1,8 +1,12 @@
 theme: jekyll-theme-slate
 permalink: /:categories/:year/:month/:day/:title
 title: Jan Beernink
-google_analytics: false
+
+paginate: 25
+
 defaults:
   -
     values:
       author: Jan Beernink
+plugins:
+  - jekyll-paginate
