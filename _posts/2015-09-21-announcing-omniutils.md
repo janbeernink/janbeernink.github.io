@@ -1,5 +1,6 @@
 ---
 title: Announcing OmniUtils
+layout: post
 tags: 
  - OmniUtils
  - Java 8
