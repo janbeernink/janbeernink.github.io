@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Re-implementing EJB in CDI
 tags: 
  - OmniServices

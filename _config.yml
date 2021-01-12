@@ -8,5 +8,14 @@ defaults:
   -
     values:
       author: Jan Beernink
+      layout: default
 plugins:
   - jekyll-paginate
+  - jekyll-feed
+  - jekyll-titles-from-headings
+
+feed:
+  tags: true
+  categories:
+    - OmniServices
+    - OmniUtils
