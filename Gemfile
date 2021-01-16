@@ -24,3 +24,5 @@ gem "jekyll-feed", "~> 0.15.1"
 gem "jekyll-redirect-from", "~> 0.16.0"
 
 gem "jekyll-avatar", "~> 0.7.0"
+
+gem "jekyll-sass", "~> 1.1"

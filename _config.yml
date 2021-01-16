@@ -24,3 +24,6 @@ feed:
 
 redirect_from:
   json: false
+
+sass:
+  style: compressed
