@@ -20,3 +20,7 @@ gem "jekyll-titles-from-headings", "~> 0.5.3"
 gem "jekyll-relative-links", "~> 0.6.1"
 
 gem "jekyll-feed", "~> 0.15.1"
+
+gem "jekyll-redirect-from", "~> 0.16.0"
+
+gem "jekyll-avatar", "~> 0.7.0"

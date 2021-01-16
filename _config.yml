@@ -13,9 +13,14 @@ plugins:
   - jekyll-paginate
   - jekyll-feed
   - jekyll-titles-from-headings
+  - jekyll-redirect-from
+  - jekyll-avatar
 
 feed:
   tags: true
   categories:
     - OmniServices
     - OmniUtils
+
+redirect_from:
+  json: false
