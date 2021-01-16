@@ -1,7 +1,7 @@
 ---
-title: Tagged posts
-layout: default
 ---
+# Tagged posts
+
 {% assign tags = site.tags | sort %}
 
 {% for tag in tags %}

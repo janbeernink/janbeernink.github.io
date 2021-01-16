@@ -1,10 +1,4 @@
-.site-title {
-  font-size: 42px;
-  font-weight: 700;
-  letter-spacing: -1px;
-  font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
-  color: #ffffff;
-
+header {
   a {
     color: inherit;
   }
@@ -12,8 +6,16 @@
   a:hover {
     text-decoration: none;
   }
-}
 
-.site-tagline {
-  font-size: 24px;
+  .title {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+    color: #ffffff;
+  }
+
+  .tagline {
+    font-size: 24px;
+  }
 }
