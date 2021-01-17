@@ -1,0 +1,17 @@
+.post {
+  .byline {
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  .tags {
+    font-size: 14px;
+    display: block;
+  }
+
+  .tag {
+    display: list-item;
+    list-style-type: square;
+    list-style-position: inside;
+  }
+}
