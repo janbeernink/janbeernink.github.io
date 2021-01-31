@@ -35,3 +35,9 @@ header {
     font-size: 21px;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  #header_wrap {
+    background: black;
+  }
+}

@@ -1,3 +1,7 @@
+:root {
+  color-scheme: light dark;
+}
+
 h1, h2, h3, h4, h5, h6 {
   a {
     color: inherit;
@@ -15,4 +19,15 @@ h2 {
   border-bottom-style: dotted;
   border-bottom-color: #dddddd;
   background: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  #main_content_wrap {
+    filter: invert(100%);
+    border: 0px;
+  }
+
+  img {
+    filter: invert(100%);
+  }
 }
