@@ -1,4 +1,6 @@
 header {
+  color: #ffffff;
+
   a {
     color: inherit;
   }
@@ -8,33 +10,18 @@ header {
   }
 
   .title {
-    font-size: 42px;
-    font-weight: 700;
-    letter-spacing: -1px;
-    font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
-    color: #ffffff;
+    @extend h1;
+    color: inherit;
+    border-bottom: 0;
   }
 
   .tagline {
-    font-size: 24px;
+    @extend h2;
+    color: inherit;
+    border-bottom: 0;
   }
 }
 
-@media screen and (max-width: 480px) {
-  header .title {
-    font-size: 28px;
-  }
-}
-
-@media screen and (max-width: 320px) {
-  header .title {
-    font-size: 24px;
-  }
-
-  header .tagline {
-    font-size: 21px;
-  }
-}
 
 @media (prefers-color-scheme: dark) {
   #header_wrap {
