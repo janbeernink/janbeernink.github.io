@@ -21,6 +21,14 @@ h2 {
   background: none;
 }
 
+.small {
+  font-size: 80%;
+}
+
+small {
+  @extend .small;
+}
+
 @media (prefers-color-scheme: dark) {
   #main_content_wrap {
     filter: invert(100%);
