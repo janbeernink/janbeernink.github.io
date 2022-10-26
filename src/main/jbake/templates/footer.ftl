@@ -1,0 +1,12 @@
+        </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+        <footer class="inner">
+
+        </footer>
+    </div>
+    
+  </body>
+</html>

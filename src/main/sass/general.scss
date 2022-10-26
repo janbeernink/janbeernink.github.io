@@ -1,0 +1,56 @@
+:root {
+  color-scheme: light dark;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  a {
+    color: inherit;
+    text-decoration-line: none;
+
+    &:visited {
+      color: inherit;
+      text-decoration-line: none;
+    }
+  }
+}
+
+h1 {
+  font-size: 36px;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: #dddddd;
+}
+
+h2 {
+  border-bottom-width: 1px;
+  border-bottom-style: dotted;
+  border-bottom-color: #dddddd;
+  background: none;
+}
+
+.small {
+  font-size: 80%;
+}
+
+small {
+  @extend .small;
+}
+
+#main_content_wrap {
+  color: black;
+  background-color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  #main_content_wrap {
+    filter: invert(100%);
+    border: 0px;
+  }
+
+  img {
+    filter: invert(100%);
+  }
+}

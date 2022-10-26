@@ -1,0 +1,88 @@
+:root {
+  color-scheme: light dark;
+}
+
+h1 a, header .title a, h2 a, header .tagline a, h3 a, h4 a, h5 a, h6 a {
+  color: inherit;
+  text-decoration-line: none;
+}
+h1 a:visited, header .title a:visited, h2 a:visited, header .tagline a:visited, h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited {
+  color: inherit;
+  text-decoration-line: none;
+}
+
+h1, header .title {
+  font-size: 36px;
+  font-family: Arial, sans-serif;
+  font-weight: 700;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: #dddddd;
+}
+
+h2, header .tagline {
+  border-bottom-width: 1px;
+  border-bottom-style: dotted;
+  border-bottom-color: #dddddd;
+  background: none;
+}
+
+.small, .post .tags, .post .byline, small {
+  font-size: 80%;
+}
+
+#main_content_wrap {
+  color: black;
+  background-color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  #main_content_wrap {
+    filter: invert(100%);
+    border: 0px;
+  }
+  img {
+    filter: invert(100%);
+  }
+}
+header {
+  color: #ffffff;
+}
+header a {
+  color: inherit;
+}
+header a:hover {
+  text-decoration: none;
+}
+header .title {
+  color: inherit;
+  border-bottom: 0;
+}
+header .tagline {
+  color: inherit;
+  border-bottom: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  #header_wrap {
+    background: black;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  #footer_wrap {
+    background: black;
+  }
+}
+.post .byline {
+  font-style: italic;
+}
+.post .tags {
+  display: block;
+}
+.post .tag {
+  display: list-item;
+  list-style-type: square;
+  list-style-position: inside;
+}
+
+/*# sourceMappingURL=main.css.map */
