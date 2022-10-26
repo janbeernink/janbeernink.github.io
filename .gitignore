@@ -1,6 +1,5 @@
-*.iml
+target/
 .idea/
-_site/
-.jekyll-cache/
-*.lock
-.sass-cache/
+*.iml
+.DS_Store
+

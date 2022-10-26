@@ -1,14 +1,9 @@
----
-title: Re-implementing EJB in CDI
-layout: post
-tags: 
- - OmniServices
- - CDI
- - EJB
- - Java EE
- - Jakarta EE
- - Stateless session beans
----
+title=Re-implementing EJB in CDI
+type=post
+tags=OmniServices, CDI, EJB, Java EE, Jakarta EE, Stateless session beans
+status=draft
+author=Jan Beernink
+~~~~~~-
 
 The overall goal of CDI is to be the core component model within the Java EE/Jakarta EE ecosystem. It replaced all the various component models that existed within the various Java EE/Jakarta EE specifications with a new, global component model. One of the component models it aims to replace is EJB. However, EJB has a few features that CDI lacks. The most notable are stateless session beans.
 

@@ -1,11 +1,10 @@
----
-title: Announcing OmniUtils
-layout: post
-tags: 
- - OmniUtils
- - Java 8
- - JDK 8
----
+title=Announcing OmniUtils
+date=2015-09-21
+type=post
+tags=omniutils, java-8
+status=published
+author=Jan Beernink
+~~~~~~
 
 If you're familiar with the OmniFaces library, you may know that it contains a number of useful utility methods. Some of these methods would also be
 useful in an environment where adding a dependency on a JSF utility library may not make sense, such as an EJB jar or a more general purpose library.
