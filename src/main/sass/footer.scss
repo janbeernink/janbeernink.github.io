@@ -1,7 +1,7 @@
 @use "constants";
 
 #footer_wrap {
-  background: constants.$dark_background;
+  background: constants.$background;
   width: 100%;
   .inner {
     @extend .content;

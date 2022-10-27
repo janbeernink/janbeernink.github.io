@@ -16,7 +16,7 @@
 
 	<div class="pagination">
 		<#if previousFileName??><a href="${previousFileName}">Previous</a></#if>
-		<span class="page_number">Page <#if currentPageNumber??>${currentPageNumber}<#else>1</#if> of <#if nextPage??>${nextPage}<#else>1</#if></span>
+		<span class="page_number">Page <#if currentPageNumber??>${currentPageNumber}<#else>1</#if><#if nextPage??>of ${nextPage}</#if></span>
 		<#if nextFileName??><a href="${nextFileName}">Next</a></#if>
 	</div>
 
