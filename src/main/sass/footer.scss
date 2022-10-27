@@ -1,15 +1,11 @@
+@use "constants";
+
 #footer_wrap {
-  background: #f2f2f2;
+  background: constants.$dark_background;
   width: 100%;
   .inner {
-    max-width: 640px;
+    @extend .content;
     position: relative;
     padding: 20px 10px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  #footer_wrap {
-    background: black;
   }
 }

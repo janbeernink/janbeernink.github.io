@@ -4,7 +4,7 @@
     <div id="tags">
         <ul>
             <#list tags as tag>
-              <li><a href="${content.rootpath}/${tag.uri}">${tag.name}</a></li>
+              <li><a href="${content.rootpath}${tag.uri}">${tag.name}</a></li>
             </#list>
         </ul>
     </div>

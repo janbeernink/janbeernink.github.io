@@ -5,7 +5,7 @@
 	<div class="tags">
 		<ul>
 			<#list tag_posts as post>
-			<li>${post.date?string("dd MMMM yyyy")} - <a href="${content.rootpath}${post.uri}">${post.title}</a></li>
+			<li>${post.date?string("dd MMMM yyyy")} - <a href="${content.rootpath}${post.uri?remove_ending("/index.html")}">${post.title}</a></li>
 			</#list>
 		</ul>
 	</div>

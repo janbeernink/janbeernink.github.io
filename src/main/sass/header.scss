@@ -1,3 +1,5 @@
+@use "constants";
+
 header {
   padding: 50px 10px 30px 10px;
   border: 0;
@@ -25,18 +27,13 @@ header {
   }
 }
 
+@debug scale-color(constants.$dark_background, $lightness: +10%);
+
 #header_wrap {
-  background: linear-gradient(to top, #373737, #212121);
+  background: linear-gradient(to top, scale-color(constants.$dark_background, $lightness: +10%), constants.$dark_background);
   width: 100%;
 
   .inner {
-    max-width: 640px;
-    margin: 0 auto;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  #header_wrap {
-    background: black;
+    @extend .content;
   }
 }
