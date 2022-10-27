@@ -1,32 +1,59 @@
----
-tile: Recent posts
-paginate_path: "/blog/page:num"
----
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,maximum-scale=2">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/main.css">
 
-<div class="recent-posts">
-	<h1>Recent posts</h1>
-	{% for post in paginator.posts %}
+    <title>Jan Beernink</title>
+</head>
+  <body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+      <header class="inner">
+        <span class="title"><a href="/">Jan Beernink</a></span>
+      </header>
+    </div>
 
-	<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
 
-	{{ post.excerpt }}
+    <h1>Recent Posts</h1>
 
-	<a href="{{ post.url }}">Read more</a>
+			<div class="post-summary">
+				<h2><a href="2015/09/21/announcing-omniutils">Announcing OmniUtils</a></h2>
+  				<p>21 September 2015</p>
+  				<p><p>If you're familiar with the OmniFaces library, you may know that it contains a number of useful utility methods. Some of these methods would also be<br />
+useful in an environment where adding a dependency on a JSF utility library may not make sense, such as an EJB jar or a more general &#8230;</p> 
+  					&lt;p&gt;If you're familiar with the OmniFaces library, you may know that it contains a number of useful utility methods. Some of these methods would also be&lt;br /&gt;
+useful in an environment where adding a dependency on a JSF utility library may not make sense, such as an EJB jar or a more general purpose library.&lt;br /&gt;
+That is why we are now announcing &lt;a href=&quot;https://github.com/omnifaces/omniutils&quot;&gt;OmniUtils, a general-purpose utility library&lt;/a&gt; targeting Java 8.&lt;/p&gt;
+&lt;p&gt;For current users of OmniFaces nothing will change, while there may be a small overlap in functionality between OmniFaces and OmniUtils, OmniFaces&lt;br /&gt;
+will remain a single-jar dependency.&lt;/p&gt;
+&lt;p&gt;OmniUtils is currently in the very early stages of development and some major changes may still be made. Stay tuned to this blog for further&lt;br /&gt;
+information about OmniUtils.&lt;/p&gt;
 
-	{% endfor %}
+				<p><a href="2015/09/21/announcing-omniutils">Read more</a></p>
+			</div>
 
-	<!-- Pagination links -->
+
 	<div class="pagination">
-		{% if paginator.previous_page %}
-		<a href="{{ paginator.previous_page_path }}" class="previous">
-			Previous
-		</a>
-		{% endif %}
-		<span class="page_number ">
-    Page: {{ paginator.page }} of {{ paginator.total_pages }}
-  </span>
-		{% if paginator.next_page %}
-		<a href="{{ paginator.next_page_path }}" class="next">Next</a>
-		{% endif %}
+		
+		<span class="page_number">Page 1</span>
+		
 	</div>
-</div>
+
+        </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+        <footer class="inner">
+
+        </footer>
+    </div>
+    
+  </body>
+</html>
