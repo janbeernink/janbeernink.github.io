@@ -27,8 +27,6 @@ header {
   }
 }
 
-@debug scale-color(constants.$dark_background, $lightness: +10%);
-
 #header_wrap {
   background: linear-gradient(to top, scale-color(constants.$dark_background, $lightness: +10%), constants.$dark_background);
   width: 100%;

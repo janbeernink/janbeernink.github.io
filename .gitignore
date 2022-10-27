@@ -1,6 +1,4 @@
+target/
+idea/
 *.iml
-.idea/
-_site/
-.jekyll-cache/
-*.lock
-.sass-cache/
+

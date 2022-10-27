@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-sass -w src/main/sass/:src/main/jbake/assets/css
+sass -s compressed -w src/main/sass/main.scss:src/main/jbake/assets/css/main.css
