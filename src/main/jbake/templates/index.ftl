@@ -7,9 +7,7 @@
 			<div class="post-summary">
 				<h2><a href="${post.uri?remove_ending("/index.html")}">${post.title}</a></h2>
   				<p>${post.date?string("dd MMMM yyyy")}</p>
-  				<p>${post.body?truncate_w(300, '&#8230;')}</p> <#escape x as x?html>
-  					${post.body}
-  				</#escape>
+  				<p>${post.body?truncate_w(300, '&#8230;')}</p>
 				<p><a href="${post.uri?remove_ending("/index.html")}">Read more</a></p>
 			</div>
   		</#if>
