@@ -9,7 +9,7 @@
 	<div class="tags">
 		Tagged:
 		<#list content.tags as tag>
-			<a class="tag" href="/tags/${tag}.html">${tag}</a>
+			<a class="tag" href="/tags/${tag}">${tag}</a>
 		</#list>
 	</div>
 </div>
