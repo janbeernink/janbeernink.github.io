@@ -1,6 +1,6 @@
 <#include "header.ftl">
 
-    <h1>Tag: ${tag}</h1>
+    <h1>Posts tagged with: ${tag}</h1>
 
 	<div class="tags">
 		<ul>
