@@ -35,4 +35,6 @@ jobs:
         path: target/blog-1-SNAPSHOT
         # Duration after which artifact will expire in days.
         retention-days: 1
-
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v1
