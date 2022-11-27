@@ -1,0 +1,13 @@
+= Calling OpenGL using Project Panama
+Jan Beernink
+:jbake-type: page
+:jbake-tags: java-19, project-panama
+:jbake-status: draft
+
+Back in university, I followed a course on 3D graphics, which included a C-based OpenGL assignment. At the time, I managed to port these examples to Java using the JOGL OpenGL library for Java. I recently came across this code again and went to try it out, but unfortunately the JOGL library does not (yet) support my architecture.
+
+This was a good opportunity to look into Project Panama, which aims to make calling native libraries much easier from Java.
+
+== Project Panama
+
+
