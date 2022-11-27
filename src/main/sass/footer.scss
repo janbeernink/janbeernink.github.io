@@ -1,11 +1,32 @@
 @use "constants";
 
 #footer_wrap {
-  background: constants.$background;
+  position: absolute;
+  bottom: 0;
+  background: constants.$dark_background;
+  color: constants.$dark_color;
   width: 100%;
   .inner {
     @extend .content;
     position: relative;
     padding: 20px 10px;
+  }
+
+  .follow > span:not(:last-child):not(:first-child) {
+    &::after {
+      margin: 0 1ch 0 1ch;
+      content: '|';
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: constants.$dark_color;
+    &:hover {
+      text-decoration: underline;
+    }
+    &:visited {
+      color: constants.$dark_color;
+    }
   }
 }
