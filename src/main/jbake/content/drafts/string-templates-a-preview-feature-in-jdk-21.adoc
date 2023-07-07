@@ -8,7 +8,8 @@ JDK 21 adds https://download.java.net/java/early_access/jdk21/docs/api/java.base
 
 Consider, for example, the below pseudo-code
 
-```java
+[source,java]
+----
 String sqlStatement = """
    SELECT
      *
@@ -19,7 +20,7 @@ String sqlStatement = """
    """;
 
 return connection.execute(sqlStatement);
-```
+----
 
 If `firstNameInput` is provided directly by the user, this would allow a malicious actor to perform SQL injection using a specifically prepared input string. This malicious actor could force the UI to return all users, which could potentially expose personally identifiable information (PII) or even delete or corrupt data in the database.
 
@@ -34,16 +35,18 @@ The `StringTemplate.Processor` is where all the work happens. The processor will
 
 One example of such a processor is https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/util/FormatProcessor.html#FMT[FormatProcessor.FMT]. This processor basically does the same a `String.format()`, but uses inline code statements instead of an argument to provide formatting. Consider the following example:
 
-```java
+[source,java]
+----
 var name = "world";
 String.format("Hello, %s!, name);
-```
+----
 
 Using the `FMT` processor, we would rewrite this as:
-```java
+[source,java]
+----
 var name = "world";
 FMT."Hello, \{name}!";
-```
+----
 
 One particularly powerful feature of the template processors is that they do not have to output a String, in fact, the result can be any type of object.
 
