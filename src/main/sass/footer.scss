@@ -1,7 +1,7 @@
 @use "constants";
 
 #footer_wrap {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   background: constants.$dark_background;
   color: constants.$dark_color;
