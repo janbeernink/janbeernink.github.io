@@ -3,31 +3,23 @@ Jan Beernink
 :jbake-type: post
 :jbake-tags: java-21, string-templates, jdk-preview-feature
 :jbake-status: draft
+:tabsize: 2
+:sourcedir: ../../../java/eu/jbeernink/blog/jdk21/stringtemplates
 
-JDK 21 adds https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/StringTemplate.html[String Templates] as a preview feature. String Templates are Java's solution for String interpolation. While String interpolation can be very useful, it is very tempting to use it for use cases where it can introduce safety issues. Consider for example an SQL query, with String interpolation, the input string is usually inserted directly into the string, without any escaping.
+String interpolation is a powerful feature by many languages. Instead of using String concatenation or using variable substitution on special format strings. Statements can inlined into the string itself, which is easier to read and less verbose than using string concatenation.
 
-Consider, for example, the below pseudo-code
+String interpolation also avoids some of the issues with using format strings. Using format strings often requires keeping the values to insert into the strings in the same order as they are used, or to explicitly specify the index of the value to insert, which can be error prone. Swap two values to be inserted around by accident and your produced string is incorrect, or worse, causes an error at runtime. This is also the reason we added the https://github.com/omnifaces/omniutils/blob/develop/src/main/java/org/omnifaces/utils/text/NameBasedMessageFormat.java[NameBasedMessageFormat class] in the https://github.com/omnifaces/omniutils[OmniUtils project], which allows substitute strings to be identified by names rather than their position in the arguments.
 
-[source,java]
-----
-String sqlStatement = """
-   SELECT
-     *
-   FROM
-     Users u
-   WHERE
-     u.firstName = "${firstNameInput}"
-   """;
+The power of string interpolation does have some drawbacks, though. The ease of use of String interpolation may tempt some developers to use it in ways that are inherently dangerous. For example, it may be tempting to use string interpolation to build an SQL statement. If the input values are not properly escaped, using string interpolation may lead to SQL injection exploits.
 
-return connection.execute(sqlStatement);
-----
+== String templates
 
-If `firstNameInput` is provided directly by the user, this would allow a malicious actor to perform SQL injection using a specifically prepared input string. This malicious actor could force the UI to return all users, which could potentially expose personally identifiable information (PII) or even delete or corrupt data in the database.
+When the development of https://openjdk.org/jeps/355[text blocks](and https://openjdk.org/jeps/326[Raw String literals] before that), a common feature request was to allow text blocks. At the time, string interpolation was rejected as a non-goal, so that this could be considered for a future Java version. In JDK 21, the Java solution for string interpolation finally arrives as a preview feature in the form of https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/StringTemplate.html[StringTemplate].
 
-String Templates aim to provide an alternative for this, rather than directly inserting the value of a statement into a string literal. To achieve this, the String Template feature consists of two parts:
+== TODO rewrite below
+During the introduction of text blocks in Java, a common request was to allow string interpolation within text blocks. These requests were rejected at the time for various reasons, including the safety of string interpolation. However, in JDK 21, a new preview feature is being added which can achieve the same thing, named a https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/StringTemplate.html[StringTemplate].
 
- * A https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/StringTemplate.html[StringTemplate]
- * A https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/StringTemplate.Processor.html[StringTemplate.Processor]
+Unlike string interpolation, a `StringTemplate` cannot be created by itself. Instead, `StringTemplate` instances are created in combination with an instance of a `StringTemplate.Processor`. This processor is where the
 
 `StringTemplate` instances can currently (as of the JDK 21 pre-release builds) only be created in combination with an instance of a `StringTemplate.Processor`, using new syntax introduced in JDK 21. Within a `StringTemplate`, a new escape sequence is introduced (`\{`) to start an expression (with `}` serving as the end of the expression). This new escape sequence is currently illegal in existing `String` code. This means that this new escape sequence will not clash with existing code. For example, if you have some code that outputs a sequence of code in another language, there is no way that the `StringTemplate` escape sequence will clash with this.
 
@@ -35,17 +27,15 @@ The `StringTemplate.Processor` is where all the work happens. The processor will
 
 One example of such a processor is https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/util/FormatProcessor.html#FMT[FormatProcessor.FMT]. This processor basically does the same a `String.format()`, but uses inline code statements instead of an argument to provide formatting. Consider the following example:
 
-[source,java]
+[source,java,indent=0]
 ----
-var name = "world";
-String.format("Hello, %s!, name);
+include::{sourcedir}/StringTemplateGreetingDemo.java[tag=formatter]
 ----
 
 Using the `FMT` processor, we would rewrite this as:
-[source,java]
+[source,java,indent=0]
 ----
-var name = "world";
-FMT."Hello, \{name}!";
+include::{sourcedir}/StringTemplateGreetingDemo.java[tag=stringTemplate]
 ----
 
 One particularly powerful feature of the template processors is that they do not have to output a String, in fact, the result can be any type of object.
