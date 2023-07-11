@@ -48,7 +48,7 @@ The processors are where all the work happens, they take a `StringTemplate` inst
 ----
 include::{sourcedir}/StringTemplateDemo.java[tag=strProcessorExample]
 ----
-<1> If the `name` variable was set to `"world"`, for example, this would produce the string `"Hello, world"`.
+<1> If the `name` variable was set to `"world"`, for example, this would produce the string `"Hello, world!"`.
 
 The `FormatProcessor.FMT` processor uses the same specification as the https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/util/Formatter.html[`Formatter`] class (or https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/String.html#format(java.util.Locale,java.lang.String,java.lang.Object...)[`String.format()`]) to format the values to be inserted. Unlike `Formatter` and `String.format()`, the `FMT` processor does not use the position in the arguments but instead inlines the statements directly. Say we wanted to format a number as a 2-character wide hexadecimal string with a leading zero used as padding, we could achieve this with the `FMT` processor like so:
 
