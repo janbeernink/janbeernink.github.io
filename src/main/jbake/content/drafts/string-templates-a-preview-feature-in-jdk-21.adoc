@@ -14,32 +14,44 @@ The power of string interpolation does have some drawbacks, though. The ease of 
 
 == String templates
 
-When the development of https://openjdk.org/jeps/355[text blocks](and https://openjdk.org/jeps/326[Raw String literals] before that), a common feature request was to allow text blocks. At the time, string interpolation was rejected as a non-goal, so that this could be considered for a future Java version. In JDK 21, the Java solution for string interpolation finally arrives as a preview feature in the form of https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/StringTemplate.html[StringTemplate].
+Java 21 adds a new preview language feature for string interpolation in the form of https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/StringTemplate.html[StringTemplates]. Just like typical string interpolation, a `StringTemplate` is a hard-coded string containing code statements which are evaluated to a value at runtime. The main benefit of a `StringTemplate` over typical string interpolation, is that it also supports additional processing, including escaping, on the input values. A `StringTemplate` also does not necessarily need to produce a `String`, but it can produce any type of object, for example, a `StringTemplate` could be evaluated directly to a `java.sql.PreparedStatement` when creating an SQL statement.
 
-== TODO rewrite below
-During the introduction of text blocks in Java, a common request was to allow string interpolation within text blocks. These requests were rejected at the time for various reasons, including the safety of string interpolation. However, in JDK 21, a new preview feature is being added which can achieve the same thing, named a https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/StringTemplate.html[StringTemplate].
+How the `StringTemplate` is processed and what type of object is produced is determined by a `StringTemplate.Processor`. These processors are the core of the `StringTemplate` feature. These classes are responsible for taking the hardcoded strings sequences and values and performing any processing on these.
 
-Unlike string interpolation, a `StringTemplate` cannot be created by itself. Instead, `StringTemplate` instances are created in combination with an instance of a `StringTemplate.Processor`. This processor is where the
+The syntax for using string templates (or text block templates), is quite similar to using a regular string, but with a twist. Using a string template requires a processor followed by a `.` operator and then the string or text block template. Any statements in the template are denoted by a sequence starting with the new `\{` escape sequence and ending with the matching `}`. To put this all together, using a string template ends up looking something like this:
 
-`StringTemplate` instances can currently (as of the JDK 21 pre-release builds) only be created in combination with an instance of a `StringTemplate.Processor`, using new syntax introduced in JDK 21. Within a `StringTemplate`, a new escape sequence is introduced (`\{`) to start an expression (with `}` serving as the end of the expression). This new escape sequence is currently illegal in existing `String` code. This means that this new escape sequence will not clash with existing code. For example, if you have some code that outputs a sequence of code in another language, there is no way that the `StringTemplate` escape sequence will clash with this.
+[source,java,indent=0,icons=font]
+----
+include::{sourcedir}/StringTemplateDemo.java[tag=syntax]
+----
+<1> The resulting string would be `"1 + 2 = 3"`, when using a processor doing simple string interpolation.
 
-The `StringTemplate.Processor` is where all the work happens. The processor will accept the raw `StringTemplate` with all the statements in the template evaluated and will then perform parsing and substition.
+=== Processors
 
-One example of such a processor is https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/util/FormatProcessor.html#FMT[FormatProcessor.FMT]. This processor basically does the same a `String.format()`, but uses inline code statements instead of an argument to provide formatting. Consider the following example:
+The processors are where all the work happens, they take a `StringTemplate` instance as argument and produce an object. The fact that a processor can produce any kind of object makes string templates a very flexible feature when compared to regular string interpolation. JDK 21 ships with three different processors:
+
+* https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/StringTemplate.html#STR[`StringTemplate.STR`]
+* https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/util/FormatProcessor.html#FMT[`FormatProcessor.FMT`]
+* https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/StringTemplate.html#RAW[`StringTemplate.RAW`]
+
+`StringTemplate.STR` is a simple processor that does "plain" string interpolation. It inserts any values directly into the string, without performing any other processing.
 
 [source,java,indent=0]
 ----
-include::{sourcedir}/StringTemplateGreetingDemo.java[tag=formatter]
+include::{sourcedir}/StringTemplateDemo.java[tag=strProcessorExample]
 ----
+<1> If the `name` variable was set to `"world"`, for example, this would produce the string `"Hello, world"`.
 
-Using the `FMT` processor, we would rewrite this as:
+The `FormatProcessor.FMT` processor uses the same specification as the https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/util/Formatter.html[`Formatter`] class (or https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/String.html#format(java.util.Locale,java.lang.String,java.lang.Object...)[`String.format()`]) to format the values to be inserted. Unlike `Formatter` and `String.format(), the `FMT` processor does not use the position in the arguments but instead inlines the statements directly. Say we wanted to format a number as a 2-character wide string with a leading zero, we could achieve this with the `FMT` processor like so:
+
 [source,java,indent=0]
 ----
-include::{sourcedir}/StringTemplateGreetingDemo.java[tag=stringTemplate]
+include::{sourcedir}/StringTemplateDemo.java[tag=fmtProcessorExample]
 ----
+<1> If `number` was set to 15, this would produce the string `"0F"`.
 
-One particularly powerful feature of the template processors is that they do not have to output a String, in fact, the result can be any type of object.
+The last processor, `StringTemplate.RAW` works quite different from the first two. Rather than returning a string, this processor will return a `StringTemplate` instance itself. In JDK 21, this is the only way to obtain instances of `StringTemplate` directly. The `StringTemplate` instance itself is immediately passed to the processor when using either the `STR` or `FMT` processors, the calling code never sees the `StringTemplate` instance directly.
 
-TODO
- - finish article
- - rewrite sections, should be more easy to comprehend.
+== Conclusion
+
+This was just a quick dive into the new string template feature which is introduced as a preview feature in JDK 21. In a follow-up post, I will dive deeper into what is required to write a template processor and what is possible with these processors.
