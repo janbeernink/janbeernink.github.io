@@ -1,10 +1,12 @@
-= Trying out String Templates in JDK 21 - Part One
+= String Templates - Part One
 Jan Beernink
 :jbake-type: post
 :jbake-tags: java-21, string-templates, jdk-preview-feature
 :jbake-status: draft
 :tabsize: 2
+:icons: font
 :sourcedir: ../../../java/eu/jbeernink/blog/jdk21/stringtemplates
+:source-highlighter: highlight.js
 
 String interpolation is a powerful feature by many languages. Instead of using String concatenation or using variable substitution on special format strings. Statements can inlined into the string itself, which is easier to read and less verbose than using string concatenation.
 
@@ -18,13 +20,19 @@ Java 21 adds a new preview language feature for string interpolation in the form
 
 How the `StringTemplate` is processed and what type of object is produced is determined by a `StringTemplate.Processor`. These processors are the core of the `StringTemplate` feature. These classes are responsible for taking the hardcoded strings sequences and values and performing any processing on these.
 
-The syntax for using string templates (or text block templates), is quite similar to using a regular string, but with a twist. Using a string template requires a processor followed by a `.` operator and then the string or text block template. Any statements in the template are denoted by a sequence starting with the new `\{` escape sequence and ending with the matching `}`. To put this all together, using a string template ends up looking something like this:
+The syntax for using string templates, is quite similar to using a regular string, but with a twist. Using a string template requires a processor followed by a `.` operator and then the string or text block template. Any statements in the template are denoted by a sequence starting with the new `\{` escape sequence and ending with the matching `}`. To put this all together, using a string template ends up looking something like this:
 
-[source,java,indent=0,icons=font]
+[source,java,indent=0]
 ----
 include::{sourcedir}/StringTemplateDemo.java[tag=syntax]
 ----
 <1> The resulting string would be `"1 + 2 = 3"`, when using a processor doing simple string interpolation.
+
+It is also possible to use text block templates with a very similar syntax. The only difference is using `"""` to denote the start and end of a string. With a text block template, all the usual rules apply for removing empty space in the string. This would give an example looking like this:
+
+[source,java,indent=0]
+include::{sourcedir}/StringTemplateDemo.java[tag=textBlockTemplate]
+
 
 === Processors
 
@@ -34,7 +42,7 @@ The processors are where all the work happens, they take a `StringTemplate` inst
 * https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/util/FormatProcessor.html#FMT[`FormatProcessor.FMT`]
 * https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/StringTemplate.html#RAW[`StringTemplate.RAW`]
 
-`StringTemplate.STR` is a simple processor that does "plain" string interpolation. It inserts any values directly into the string, without performing any other processing.
+`StringTemplate.STR` is a simple processor that does "plain" string interpolation. It inserts any values directly into the string, without performing any other processing. `STR` will be imported by default in any class, so no additional imports are required to use it.
 
 [source,java,indent=0]
 ----
@@ -42,7 +50,7 @@ include::{sourcedir}/StringTemplateDemo.java[tag=strProcessorExample]
 ----
 <1> If the `name` variable was set to `"world"`, for example, this would produce the string `"Hello, world"`.
 
-The `FormatProcessor.FMT` processor uses the same specification as the https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/util/Formatter.html[`Formatter`] class (or https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/String.html#format(java.util.Locale,java.lang.String,java.lang.Object...)[`String.format()`]) to format the values to be inserted. Unlike `Formatter` and `String.format(), the `FMT` processor does not use the position in the arguments but instead inlines the statements directly. Say we wanted to format a number as a 2-character wide string with a leading zero, we could achieve this with the `FMT` processor like so:
+The `FormatProcessor.FMT` processor uses the same specification as the https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/util/Formatter.html[`Formatter`] class (or https://download.java.net/java/early_access/jdk21/docs/api/java.base/java/lang/String.html#format(java.util.Locale,java.lang.String,java.lang.Object...)[`String.format()`]) to format the values to be inserted. Unlike `Formatter` and `String.format(), the `FMT` processor does not use the position in the arguments but instead inlines the statements directly. Say we wanted to format a number as a 2-character wide hexadecimal string with a leading zero used as padding, we could achieve this with the `FMT` processor like so:
 
 [source,java,indent=0]
 ----

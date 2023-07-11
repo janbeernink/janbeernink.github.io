@@ -12,6 +12,18 @@ public class StringTemplateDemo {
 		// end::syntax[]
 	}
 
+	String textBlockTemplateSyntax(String name) {
+		var processor = StringTemplate.STR;
+		return
+				// tag::textBlockTemplate[]
+				processor."""
+				This is the first line.
+				This is the second.
+				Insert \{name} here.
+				""";
+		// end::textBlockTemplate[]
+	}
+
 	String strProcessorExample(String name) {
 		// tag::strProcessorExample[]
 		String message = STR."Hello, \{name}!"; // <1>
@@ -19,7 +31,7 @@ public class StringTemplateDemo {
 		return message;
 	}
 
-	String fmtProcessorExample(int number){
+	String fmtProcessorExample(int number) {
 		// tag::fmtProcessorExample[]
 		String output = FMT."%02X\{number}"; // <1>
 		// end::fmtProcessorExample[]

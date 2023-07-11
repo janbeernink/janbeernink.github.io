@@ -19,6 +19,20 @@ class StringTemplateDemoTest {
 	}
 
 	@Test
+	@DisplayName("textBlockTemplateSyntax() returns expected result")
+	void textBlockTemplateSyntax_returnsExpectedResult() {
+		var demo = new StringTemplateDemo();
+
+		String result = demo.textBlockTemplateSyntax("some random name");
+
+		assertEquals("""
+				This is the first line.
+				This is the second.
+				Insert some random name here.
+				""", result);
+	}
+
+	@Test
 	@DisplayName("strProcessorExample() returns expected result")
 	void strProcessorExample_returnsExpectedResult() {
 		var demo = new StringTemplateDemo();

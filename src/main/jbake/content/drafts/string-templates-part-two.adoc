@@ -1,0 +1,14 @@
+= String Templates - part 2
+Jan Beernink
+:jbake-type: post
+:jbake-tags: java-21, string-templates, jdk-preview-feature
+:jbake-status: draft
+:tabsize: 2
+:icons: font
+:sourcedir: ../../../java/eu/jbeernink/blog/jdk21/stringtemplates/processor
+
+In a previous post, I took a look at string templates. In this post I'd like to focus more on a specfic part of the new string template preview feature in JDK 21, the `StringTemplate.Processor`.
+
+==
+
+TODO: finish
