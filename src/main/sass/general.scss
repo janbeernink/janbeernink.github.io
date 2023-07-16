@@ -67,6 +67,17 @@ small {
   }
 }
 
+.admonitionblock.note{
+  .icon {
+    i::after {
+      content: "Note";
+      text-transform: uppercase;
+      font-style: normal;
+      font-weight: 800;
+      padding: 5px;
+    }
+  }
+}
 
 //@media (prefers-color-scheme: dark) {
 //  #main_content_wrap {

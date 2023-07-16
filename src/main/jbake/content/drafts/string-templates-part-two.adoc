@@ -6,9 +6,36 @@ Jan Beernink
 :tabsize: 2
 :icons: font
 :sourcedir: ../../../java/eu/jbeernink/blog/jdk21/stringtemplates/processor
+:note-caption: pass:[&#128161;]
 
 In a previous post, I took a look at string templates. In this post I'd like to focus more on a specfic part of the new string template preview feature in JDK 21, the `StringTemplate.Processor`.
 
-==
+== Processor
+
+The `StringTemplate.Processor` interface is a simple functional interface. It defines a single `process(StringTemplate)` method, which has a generic return type. As mentioned in my previous post, the processor does not necessarily need to return a `String`, but can return any type of object, which makes processors quite powerful.
+
+The `StringTemplate` passed into the processor will contain a list of string fragments and a list of values, which are the result of the embedded expressions in the template. These are two separate lists, so some care must be taken to make sure that the fragments and values are in the correct order. Each fragment comes before the value at the same index in the list, plus there is one more fragment after the last value.
+
+To put it differently, if there are `n` embedded expressions in the string or text block template in the source code, there will be `n+1` fragments and `n` values contained in the `StringTemplate` instance. The order in which they must be evaluated would be the following:
+
+```
+fragment[0], value[0], fragment[1], value[1], ..., fragment[n], value[n], fragment[n + 1]
+```
+
+Let's put this together into a processor that concatenates all fragments and values into a `StringBuilder` and then returning the resulting string. The `StringTemplate` class itself actually has a handy utility method called `interpolate()` wich would already produce the exact same result, so it would never be necessary to write this yourself, but this does provide a great example for how a `StringTemplate` can be processed into a `String`.
+
+Before we dive into the code, there is one thing of note. `StringTemplate.Processor` actually has two generic parameters `R` for the result and `E extends Throwable` for the type of exceptions that the processor can throw. This allows a processor to define if the throw a checked exception and which, or if they don't. In our case for our example, throwing just `RuntimeException` is fine. With this out of the way, let's dive into the code of our `StringBuilderProcessor`.
+
+[source,java,indent=0]
+----
+include::{sourcedir}/StringBuilderProcessor.java[tag=processor]
+----
+<1> There will always be at least one fragment, even if there are no embedded statements, so we check the fragments first.
+<2> The fragment should come before the value at the same index.
+<3> There won't be anymore values after the last fragment, as there is always at least one more fragments than values, so we skip appending a value here if there are none left.
+
+So that's a simple processor, but what if we wanted to do something more? Say not necessarily produce a String, but produce a fully fleshed out `JSONObject`. While producing a `JSONObject` might be a bit much for a blogpost, but what if we narrow it down, what if we create a processor that can be used to create a `String`-keyed immutable `Map`?
+
+NOTE: This is a slightly contrived example, as we already have `Map.of()` and `Map.ofEntries()`. These two methods are both strongly preferable for creating maps over using string templates as they both provide compile-time type safety, which is not possible when using a string template based solution.
 
 TODO: finish
