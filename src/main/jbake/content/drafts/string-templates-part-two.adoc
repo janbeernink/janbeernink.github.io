@@ -6,11 +6,10 @@ Jan Beernink
 :tabsize: 2
 :icons: font
 :sourcedir: ../../../java/eu/jbeernink/blog/jdk21/stringtemplates/processor
-:note-caption: pass:[&#128161;]
 
 In a previous post, I took a look at string templates. In this post I'd like to focus more on a specfic part of the new string template preview feature in JDK 21, the `StringTemplate.Processor`.
 
-== Processor
+== Simple processor
 
 The `StringTemplate.Processor` interface is a simple functional interface. It defines a single `process(StringTemplate)` method, which has a generic return type. As mentioned in my previous post, the processor does not necessarily need to return a `String`, but can return any type of object, which makes processors quite powerful.
 
@@ -33,6 +32,8 @@ include::{sourcedir}/StringBuilderProcessor.java[tag=processor]
 <1> There will always be at least one fragment, even if there are no embedded statements, so we check the fragments first.
 <2> The fragment should come before the value at the same index.
 <3> There won't be anymore values after the last fragment, as there is always at least one more fragments than values, so we skip appending a value here if there are none left.
+
+== Advanced processor example
 
 So that's a simple processor, but what if we wanted to do something more? Say not necessarily produce a String, but produce a fully fleshed out `JSONObject`. While producing a `JSONObject` might be a bit much for a blogpost, but what if we narrow it down, what if we create a processor that can be used to create a `String`-keyed immutable `Map`?
 
