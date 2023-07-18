@@ -8,7 +8,7 @@ Jan Beernink
 :sourcedir: ../../../java/eu/jbeernink/blog/jdk21/stringtemplates
 :source-highlighter: highlight.js
 
-String interpolation is a powerful feature available in many languages. Instead of using String concatenation or using variable substitution on special format strings. Statements can inlined into the string itself, which is easier to read and less verbose than using string concatenation.
+String interpolation is a powerful feature available in many languages. Instead of using String concatenation or using printf-style variable substitution on specially format strings, statements can inlined into the string itself. String interpolation is usually easier to read and less verbose than plain string concatenation and it is generally less error-prone than using format-style strings.
 
 String interpolation also avoids some of the issues with using format strings. Using format strings often requires keeping the values to insert into the strings in the same order as they are used, or to explicitly specify the index of the value to insert, which can be error prone. Swap two values to be inserted around by accident and your produced string is incorrect, or worse, causes an error at runtime. This is also the reason we added the https://github.com/omnifaces/omniutils/blob/develop/src/main/java/org/omnifaces/utils/text/NameBasedMessageFormat.java[NameBasedMessageFormat class] in the https://github.com/omnifaces/omniutils[OmniUtils project], which allows substitute strings to be identified by names rather than their position in the arguments.
 
