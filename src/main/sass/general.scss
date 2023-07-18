@@ -69,21 +69,15 @@ small {
 
 .admonitionblock.note{
   .icon {
-    i::before {
-      font-style: normal;
-      font-size: 26px;
-      padding: 12px;
-      content: "\2139\FE0E";
-      color: constants.$background;
-      background: #0F79D0;
-      border-radius: 50%;
-    }
     i::after {
       content: "Note";
       text-transform: uppercase;
       font-style: normal;
       font-weight: 800;
       padding: 5px;
+      background: #0F79D0;
+      color: constants.$background;
+      border-radius: 5px;
     }
   }
 }
